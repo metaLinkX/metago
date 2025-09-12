@@ -17,4 +17,3 @@ temp/
 temp.yaml
 bin
 **/config/config.yaml
-vendor

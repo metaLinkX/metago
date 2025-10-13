@@ -187,6 +187,6 @@ func (s *sAdminMenu) GetFastList(ctx context.Context) (res map[int64]*entity.Adm
 	return
 }
 
-func (s *sAdminMenu) HasMenus(ctx context.Context, menuNames []string) (gdb.Array, error) {
+func (s *sAdminMenu) HasMenus(ctx context.Context, menuNames []string) ([]gdb.Value, error) {
 	return dao.AdminMenu.Ctx(ctx).Fields(dao.AdminMenu.Columns().Name).WhereIn(dao.AdminMenu.Columns().Name, menuNames).Array()
 }

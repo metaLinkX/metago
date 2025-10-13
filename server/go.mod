@@ -4,13 +4,13 @@ go 1.24.0
 
 require (
 	github.com/forgoer/openssl v1.8.0
-	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.9.4
-	github.com/gogf/gf/contrib/nosql/redis/v2 v2.9.4
-	github.com/gogf/gf/v2 v2.9.4
+	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.9.1
+	github.com/gogf/gf/contrib/nosql/redis/v2 v2.9.1
+	github.com/gogf/gf/v2 v2.9.1
 	github.com/gogf/selfupdate v0.0.0-20231215043001-5c48c528462f
 	github.com/golang-jwt/jwt/v5 v5.3.0
 	github.com/mojocn/base64Captcha v1.3.8
-	github.com/olekukonko/tablewriter v1.1.0
+	github.com/olekukonko/tablewriter v0.0.5
 	github.com/schollz/progressbar/v3 v3.18.0
 	golang.org/x/mod v0.28.0
 	golang.org/x/net v0.46.0
@@ -39,11 +39,8 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db // indirect
-	github.com/olekukonko/errors v1.1.0 // indirect
-	github.com/olekukonko/ll v0.0.9 // indirect
 	github.com/redis/go-redis/v9 v9.12.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel v1.38.0 // indirect
 	go.opentelemetry.io/otel/metric v1.38.0 // indirect

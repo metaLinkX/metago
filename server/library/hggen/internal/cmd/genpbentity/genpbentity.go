@@ -10,11 +10,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/olekukonko/tablewriter"
 	"path/filepath"
 	"regexp"
 	"strings"
-
-	"github.com/olekukonko/tablewriter"
 
 	"github.com/gogf/gf/v2/container/garray"
 	"github.com/gogf/gf/v2/container/gset"
@@ -415,12 +414,12 @@ func generateEntityMessageDefinition(entityName string, fieldMap map[string]*gdb
 		}
 	}
 	tw := tablewriter.NewWriter(buffer)
-	//tw.SetBorder(false)
-	//tw.SetRowLine(false)
-	//tw.SetAutoWrapText(false)
-	//tw.SetColumnSeparator("")
-	//tw.AppendBulk(array)
-	tw.Append(array)
+	tw.SetBorder(false)
+	tw.SetRowLine(false)
+	tw.SetAutoWrapText(false)
+	tw.SetColumnSeparator("")
+	tw.AppendBulk(array)
+
 	tw.Render()
 	stContent := buffer.String()
 	// Let's do this hack of table writer for indent!

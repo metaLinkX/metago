@@ -9,7 +9,6 @@ package cmd
 import (
 	"bytes"
 	"context"
-
 	"github.com/olekukonko/tablewriter"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -62,10 +61,9 @@ func (c cEnv) Index(ctx context.Context, in cEnvInput) (out *cEnvOutput, err err
 		array = append(array, []string{gstr.Trim(match[1]), gstr.Trim(match[2])})
 	}
 	tw := tablewriter.NewWriter(buffer)
-	//tw.SetColumnAlignment([]int{tablewriter.ALIGN_LEFT, tablewriter.ALIGN_LEFT})
-	//tw.AppendBulk(array)
+	tw.SetColumnAlignment([]int{tablewriter.ALIGN_LEFT, tablewriter.ALIGN_LEFT})
+	tw.AppendBulk(array)
 
-	tw.Append(array)
 	tw.Render()
 	mlog.Print(buffer.String())
 	return

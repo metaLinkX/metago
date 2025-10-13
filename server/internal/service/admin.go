@@ -30,7 +30,7 @@ type (
 		GetMenuList(ctx context.Context, memberId int64) (res *adminRole.DynamicRes, err error)
 		// GetFastList 获取菜单列表
 		GetFastList(ctx context.Context) (res map[int64]*entity.AdminMenu, err error)
-		HasMenus(ctx context.Context, menuNames []string) (gdb.Array, error)
+		HasMenus(ctx context.Context, menuNames []string) ([]gdb.Value, error)
 	}
 	IAdminRole interface {
 		// List 获取列表

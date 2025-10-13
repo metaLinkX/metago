@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/olekukonko/tablewriter"
 	"server/internal/dao"
 	"server/internal/model/input/sysin"
 	"strings"
@@ -14,7 +15,6 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/olekukonko/tablewriter"
 )
 
 const (
@@ -64,11 +64,10 @@ func (l *gCurd) generateInputViewColumns(ctx context.Context, in *CurdPreviewInp
 	}
 
 	tw := tablewriter.NewWriter(buffer)
-	//tw.SetBorder(false)
-	//tw.SetRowLine(false)
-	//tw.SetAutoWrapText(false)
-	//tw.SetColumnSeparator("")
-	tw.Append(array)
+	tw.SetBorder(false)
+	tw.SetRowLine(false)
+	tw.SetAutoWrapText(false)
+	tw.SetColumnSeparator("")
 	tw.Render()
 	stContent := buffer.String()
 	// Let's do this hack of table writer for indent!
@@ -128,12 +127,11 @@ func (l *gCurd) generateInputListColumns(ctx context.Context, in *CurdPreviewInp
 	}
 
 	tw := tablewriter.NewWriter(buffer)
-	//tw.SetBorder(false)
-	//tw.SetRowLine(false)
-	//tw.SetAutoWrapText(false)
-	//tw.SetColumnSeparator("")
-	//tw.AppendBulk(array)
-	tw.Append(array)
+	tw.SetBorder(false)
+	tw.SetRowLine(false)
+	tw.SetAutoWrapText(false)
+	tw.SetColumnSeparator("")
+	tw.AppendBulk(array)
 	tw.Render()
 	stContent := buffer.String()
 	// Let's do this hack of table writer for indent!

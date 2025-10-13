@@ -10,14 +10,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"strings"
-
-	"github.com/olekukonko/tablewriter"
-
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/olekukonko/tablewriter"
+	"strings"
 )
 
 type generateStructDefinitionInput struct {
@@ -42,12 +40,12 @@ func generateStructDefinition(ctx context.Context, in generateStructDefinitionIn
 		}
 	}
 	tw := tablewriter.NewWriter(buffer)
-	//tw.SetBorder(false)
-	//tw.SetRowLine(false)
-	//tw.SetAutoWrapText(false)
-	//tw.SetColumnSeparator("")
-	//tw.AppendBulk(array)
-	tw.Append(array)
+	tw.SetBorder(false)
+	tw.SetRowLine(false)
+	tw.SetAutoWrapText(false)
+	tw.SetColumnSeparator("")
+	tw.AppendBulk(array)
+
 	tw.Render()
 	stContent := buffer.String()
 	// Let's do this hack of table writer for indent!

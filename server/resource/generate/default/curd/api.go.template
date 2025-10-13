@@ -10,7 +10,7 @@ package @{.varName | ToLower}
 import (
 	"github.com/gogf/gf/v2/frame/g"
 	"@{.importInput}"
-	"hotgo/internal/model/input/form"
+	"server/internal/model/input/form"
 	@{ if eq .options.Step.IsTreeTable true }"hotgo/utility/tree"@{end}
 )
 

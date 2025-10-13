@@ -10,7 +10,7 @@ package @{.templateGroup}
 import (
 	"context"
 	"@{.importApi}"
-	"hotgo/internal/model/input/form"
+	"server/internal/model/input/form"
 	"@{.importInput}"
 	"@{.importService}"
 	"hotgo/utility/validate"

@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "server/internal/packed"
+	"server/library/hggen"
 	"server/library/system"
 
 	_ "server/internal/logic"
@@ -16,5 +17,7 @@ func main() {
 	ctx := gctx.GetInitCtx()
 	system.InitServerRoot(ctx)
 	system.InitGFMode(ctx)
+	hggen.InIt(ctx)
+
 	cmd.Main.Run(ctx)
 }

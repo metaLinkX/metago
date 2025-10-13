@@ -7,6 +7,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gconv"
+	"github.com/gogf/gf/v2/util/gmode"
 	"gopkg.in/yaml.v3"
 	"server/library/hggen/internal/cmd/gendao"
 	"server/library/hggen/internal/cmd/genservice"
@@ -77,6 +78,11 @@ func GetDaoConfig(group string) gendao.CGenDaoInput {
 }
 
 func InIt(ctx context.Context) {
+	// 初始化生成代码配置 todo
+	if gmode.IsProduct() || gmode.IsTesting() {
+		return
+	}
+
 	path, err := gfile.Search(cliFolderName)
 	if err != nil {
 		g.Log().Fatalf(ctx, "get cli configuration file:%v, err:%+v", cliFolderName, err)

@@ -16,23 +16,23 @@ import (
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/gconv"
-	"hotgo/internal/dao"
-	"hotgo/internal/consts"
-	"hotgo/internal/library/contexts"
-	"hotgo/internal/library/hgorm"
-	"hotgo/internal/library/hgorm/handler"
-	"hotgo/internal/library/hgorm/hook"
+	"server/internal/dao"
+	"server/internal/consts"
+	"server/internal/library/contexts"
+	"server/internal/library/hgorm"
+	"server/internal/library/hgorm/handler"
+	"server/internal/library/hgorm/hook"
 	"@{.importInput}"
-	"hotgo/internal/model/input/form"
+	"server/internal/model/input/form"
 	"@{.importService}"
 	"hotgo/utility/convert"
 	"hotgo/utility/excel"
 	"hotgo/utility/validate"
-	@{ if eq .options.Step.IsAddon true }isc "hotgo/internal/service"@{end}
+	@{ if eq .options.Step.IsAddon true }isc "server/internal/service"@{end}
 	@{ if eq .options.Step.IsTreeTable true }"hotgo/utility/tree"@{end}
-	@{ if eq .options.Step.HasFuncDict true }"hotgo/internal/library/dict"@{end}
-	@{ if and (eq .options.Step.HasFuncDict true) (eq .options.Step.IsAddon false) }"hotgo/internal/model"@{end}
-	@{ if and (eq .options.Step.HasFuncDict true) (eq .options.Step.IsAddon true) }imodel "hotgo/internal/model"@{end}
+	@{ if eq .options.Step.HasFuncDict true }"server/internal/library/dict"@{end}
+	@{ if and (eq .options.Step.HasFuncDict true) (eq .options.Step.IsAddon false) }"server/internal/model"@{end}
+	@{ if and (eq .options.Step.HasFuncDict true) (eq .options.Step.IsAddon true) }imodel "server/internal/model"@{end}
 )
 
 type s@{.servFunName} struct{}

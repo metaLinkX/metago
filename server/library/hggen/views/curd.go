@@ -4,6 +4,7 @@ package views
 
 import (
 	"context"
+	"github.com/gogf/gf/v2/util/gutil"
 	"runtime"
 	"server/internal/consts"
 	"server/internal/dao"
@@ -364,9 +365,9 @@ func (l *gCurd) loadView(ctx context.Context, in *CurdPreviewInput) (err error) 
 	importApi := gstr.Replace(temp.ApiPath, "./", modName+"/") + "/" + strings.ToLower(in.In.VarName)
 	importInput := gstr.Replace(temp.InputPath, "./", modName+"/")
 	importController := gstr.Replace(temp.ControllerPath, "./", modName+"/")
-	importService := "hotgo/internal/service"
+	importService := "server/internal/service"
 	if temp.IsAddon {
-		importService = "hotgo/addons/" + in.In.AddonName + "/service"
+		importService = "server/addons/" + in.In.AddonName + "/service"
 	}
 
 	in.options.ImportWebApi = "@/api/" + gstr.LcFirst(in.In.VarName)
@@ -413,6 +414,8 @@ func (l *gCurd) DoBuild(ctx context.Context, in *CurdBuildInput) (err error) {
 	if err != nil {
 		return
 	}
+
+	gutil.Dump(in.PreviewIn.DaoConfig.Link)
 
 	db, err := g.DB().Open(ParseDBConfigNodeLink(&gdb.ConfigNode{Link: in.PreviewIn.DaoConfig.Link}))
 	if err != nil {

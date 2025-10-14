@@ -19,10 +19,15 @@
   import { State, newState } from './model';
   import { adaModalWidth } from '@/utils/hotgo';
   import { getFileExt } from '@/utils/urlUtils';
-  @{ if eq .options.DictOps.Has true }import { useDictStore } from '@/store/modules/dict';@{end}
+  @{ if eq .options.DictOps.Has true }
+  import { useDictStore } from '@/store/modules/dict';
+  // 使用从model中导入的字典选项
+  @{ range $index, $dictType := .options.DictOps.Types }
+  const { @{ $dictType | LcFirst }DictOptions } = useDictStore();
+  @{ end }
+  @{end}
 
   const message = useMessage();
-  @{ if eq .options.DictOps.Has true }const dict = useDictStore();@{end}
   const loading = ref(false);
   const showModal = ref(false);
   const formValue = ref(newState(null));
@@ -60,4 +65,3 @@
 </script>
 
 <style lang="less" scoped></style>
-

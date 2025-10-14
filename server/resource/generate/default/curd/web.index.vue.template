@@ -183,7 +183,11 @@
 
 <script lang="ts" setup>
 @{.import}
-  @{ if eq .options.DictOps.Has true }const dict = useDictStore();@{end}
+  @{ if eq .options.DictOps.Has true }
+  @{ range $index, $dictType := .options.DictOps.Types }
+  const { @{ $dictType | LcFirst }DictOptions } = useDictStore();
+  @{ end }
+  @{end}
   const dialog = useDialog();
   const message = useMessage();
   const { hasPermission } = usePermission();
@@ -269,17 +273,26 @@
   @{ if eq .options.Step.IsTreeTable false }
   // 加载表格数据
   const loadDataTable = async (res) => {
-    return await List({ ...searchFormRef.value?.formModel, ...res });
+    const result = await List({ ...searchFormRef.value?.formModel, ...res });
+    @{ if eq .options.DictOps.Has true }
+    // 设置字典选项
+    setDictOptions(result);
+    @{ end }
+    return result;
   };@{end}
 
   @{ if and (eq .options.Step.IsTreeTable true) (eq .options.Step.IsOptionTreeTable false) }
   // 加载普通数表数据
   const loadDataTable = async (res = {}) => {
     const params = { ...(searchFormRef.value?.formModel ?? {}), ...res, pagination: false };
-    const dataSource = await List(params);
-    allTreeKeys.value = expandedKeys.value = dataSource.list.map((item) => item.@{.pk.TsName});
-    dataSource.list = convertListToTree(dataSource.list, '@{.pk.TsName}');
-    return dataSource;
+    const result = await List(params);
+    @{ if eq .options.DictOps.Has true }
+    // 设置字典选项
+    setDictOptions(result);
+    @{ end }
+    allTreeKeys.value = expandedKeys.value = result.list.map((item) => item.@{.pk.TsName});
+    result.list = convertListToTree(result.list, '@{.pk.TsName}');
+    return result;
   };@{end}
 
   @{ if and (eq .options.Step.IsTreeTable true) (eq .options.Step.IsOptionTreeTable true) }
@@ -298,7 +311,12 @@
       ...res,
       pid: selectedState.value.@{.pk.TsName},
     };
-    return await List(params);
+    const result = await List(params);
+    @{ if eq .options.DictOps.Has true }
+    // 设置字典选项
+    setDictOptions(result);
+    @{ end }
+    return result;
   };
   @{end}
 
@@ -399,6 +417,7 @@
 
   @{ if and (eq .options.Step.IsTreeTable true) (eq .options.Step.IsOptionTreeTable false) }
   // 收起/展开全部树节点
+  // 收起/展开全部树节点
   function handleAllExpanded() {
     if (expandedKeys.value.length) {
       expandedKeys.value = [];
@@ -449,7 +468,6 @@
 
 @{ if or (eq .dictOptions.Has true) (eq .options.Step.IsOptionTreeTable true) }
   onMounted(() => {
-    @{ if eq .dictOptions.Has true }loadOptions();@{end}
     @{ if eq .options.Step.IsOptionTreeTable true }firstLoadTreeOption();@{end}
   });@{end}
 </script>

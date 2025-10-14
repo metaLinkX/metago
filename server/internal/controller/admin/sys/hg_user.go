@@ -65,6 +65,12 @@ func (c *cHgUser) View(ctx context.Context, req *hguser.ViewReq) (res *hguser.Vi
 
 	res = new(hguser.ViewRes)
 	res.HgUserViewModel = data
+	// 添加字典依赖
+
+	res.SysNormalDisableOption = consts.DictSysNormalDisableOption
+
+	res.SysLoginStatusOption = consts.DictSysLoginStatusOption
+
 	return
 }
 

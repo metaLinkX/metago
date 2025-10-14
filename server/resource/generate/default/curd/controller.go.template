@@ -82,6 +82,10 @@ func (c *c@{.varName}) View(ctx context.Context, req *@{.varName | ToLower}.View
 
 	res = new(@{.varName | ToLower}.ViewRes)
 	res.@{.varName}ViewModel = data
+	// 添加字典依赖
+    @{ range $index, $dictType := .options.DictOps.Types }
+    res.@{ $dictType | ToCamel }Option = consts.Dict@{ $dictType | ToCamel }Option
+    @{ end }
 	return
 }
 @{end}

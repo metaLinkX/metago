@@ -32,9 +32,40 @@ export function newState(state: State | Record<string, any> | null): State {
 @{.columns}
 
 @{ if eq .dictOptions.Has true }
-// 加载字典数据选项
-export function loadOptions() {
-  dict.loadOptions(@{ToTSArray .options.DictOps.Types});
+// 定义字典选项变量
+@{ range $index, $dictType := .options.DictOps.Types }
+export const @{ $dictType | LcFirst }DictOptions = ref<any[]>([]);
+@{ end }
+
+// 设置字典选项
+export function setDictOptions(data: any) {
+  @{ range $index, $dictType := .options.DictOps.Types }
+  if (data.dict@{ $dictType | LcFirst }Option) {
+    @{ $dictType | LcFirst }DictOptions.value = data.dict@{ $dictType | LcFirst }Option;
+  }
+  @{ end }
+}
+
+// 获取字典标签
+export function getDictLabel(dictType: string, value: any): string {
+  @{ range $index, $dictType := .options.DictOps.Types }
+  if (dictType === '@{ $dictType }') {
+    const option = @{ $dictType | LcFirst }DictOptions.value.find(item => item.value === value);
+    return option ? option.label : '';
+  }
+  @{ end }
+  return '';
+}
+
+// 获取字典类型
+export function getDictType(dictType: string, value: any): string {
+  @{ range $index, $dictType := .options.DictOps.Types }
+  if (dictType === '@{ $dictType }') {
+    const option = @{ $dictType | LcFirst }DictOptions.value.find(item => item.value === value);
+    return option ? option.listClass : 'default';
+  }
+  @{ end }
+  return 'default';
 }
 @{end}
 
@@ -49,4 +80,3 @@ export function loadTreeOption() {
   });
 }
 @{end}
-

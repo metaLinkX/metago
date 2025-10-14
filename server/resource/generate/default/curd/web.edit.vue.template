@@ -45,7 +45,12 @@
   const emit = defineEmits(['reloadTable']);
   const message = useMessage();
   const settingStore = useProjectSettingStore();
-  @{ if eq .options.DictOps.Has true }const dict = useDictStore();@{end}
+  @{ if eq .options.DictOps.Has true }
+  // 使用从model中导入的字典选项
+  @{ range $index, $dictType := .options.DictOps.Types }
+  const { @{ $dictType | LcFirst }DictOptions } = useDictStore();
+  @{ end }
+  @{end}
   const loading = ref(false);
   const showModal = ref(false);
   const formValue = ref<State>(newState(null));
@@ -121,4 +126,3 @@
 </script>
 
 <style lang="less"></style>
-

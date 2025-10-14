@@ -48,6 +48,10 @@ type ViewReq struct {
 
 type ViewRes struct {
 	*@{.templateGroup}in.@{.varName}ViewModel
+    // 添加字典依赖
+    @{ range $index, $dictType := .options.DictOps.Types }
+    @{ $dictType | ToCamel }Option []model.Option `json:"@{ $dictType | ToCamel | LcFirst }Option" dc:"字典选项"`
+    @{ end }
 }
 @{end}
 @{ if eq .options.Step.HasEdit true }

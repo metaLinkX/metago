@@ -47,6 +47,11 @@ type ViewReq struct {
 
 type ViewRes struct {
 	*sysin.HgUserViewModel
+	// 添加字典依赖
+
+	SysNormalDisableOption []model.Option `json:"sysNormalDisableOption" dc:"字典选项"`
+
+	SysLoginStatusOption []model.Option `json:"sysLoginStatusOption" dc:"字典选项"`
 }
 
 // EditReq 修改/新增租户

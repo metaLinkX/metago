@@ -4,7 +4,7 @@ package views
 
 import (
 	"context"
-	"github.com/gogf/gf/v2/util/gutil"
+	"fmt"
 	"runtime"
 	"server/internal/consts"
 	"server/internal/dao"
@@ -17,6 +17,8 @@ import (
 	"server/library/hgorm"
 	"server/library/tree"
 	"strings"
+
+	"github.com/gogf/gf/v2/util/gutil"
 
 	"github.com/gogf/gf/v2/container/gvar"
 	"github.com/gogf/gf/v2/database/gdb"
@@ -548,6 +550,11 @@ func (l *gCurd) DoPreview(ctx context.Context, in *CurdPreviewInput) (res *sysin
 		return nil, err
 	}
 
+	// 生成字典常量文件
+	if err = l.generateDictConstFiles(ctx, in); err != nil {
+		return nil, err
+	}
+
 	in.content.Config = in.Config
 	res = in.content
 	return
@@ -1001,4 +1008,46 @@ func (l *gCurd) generateSqlContent(ctx context.Context, in *CurdPreviewInput) (e
 
 	in.content.Views[name] = genFile
 	return
+}
+
+// generateDictConstFiles 生成字典常量文件
+func (l *gCurd) generateDictConstFiles(ctx context.Context, in *CurdPreviewInput) (err error) {
+	// 检查是否需要生成字典常量文件
+	if !in.options.DictOps.Has || len(in.options.DictOps.Types) == 0 {
+		return nil
+	}
+
+	// 为每个字典类型生成常量文件
+	for _, dictType := range in.options.DictOps.Types {
+		// 生成字典常量文件内容
+		content, err := l.GenerateDictConstFile(ctx, dictType)
+		if err != nil {
+			// 如果生成失败，记录日志并继续处理其他字典类型
+			g.Log().Warningf(ctx, "Failed to generate dict const file for type '%s': %v", dictType, err)
+			continue
+		}
+
+		// 创建生成文件对象
+		genFile := new(sysin.GenFile)
+		genFile.Content = content
+		genFile.Meth = consts.GenCodesBuildMethCreate
+		genFile.Required = true
+
+		// 设置文件路径 - 生成到 internal/consts 目录下
+		fileName := fmt.Sprintf("dict_%s.go", strings.ToLower(dictType))
+		genFile.Path = file.MergeAbs("./internal/consts", fileName)
+
+		// 检查文件是否已存在
+		if gfile.Exists(genFile.Path) {
+			genFile.Meth = consts.GenCodesBuildMethSkip
+			if gstr.InArray(in.options.AutoOps, "forcedCover") {
+				genFile.Meth = consts.GenCodesBuildMethCover
+			}
+		}
+
+		// 将生成的文件添加到内容中
+		in.content.Views[fmt.Sprintf("dict_%s.go", dictType)] = genFile
+	}
+
+	return nil
 }

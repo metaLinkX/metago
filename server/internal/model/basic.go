@@ -23,13 +23,3 @@ type Response struct {
 	Timestamp int64       `json:"timestamp" example:"1640966400" description:"服务器时间戳"`
 	TraceID   string      `json:"traceID" v:"0" example:"d0bb93048bc5c9164cdee845dcb7f820" description:"链路ID"`
 }
-
-type MdOption struct {
-	Key       interface{} `json:"key"`
-	Label     string      `json:"label"     description:"字典标签"`
-	Value     interface{} `json:"value"     description:"字典键值"`
-	ValueType string      `json:"valueType" description:"键值数据类型"`
-	Type      string      `json:"type"      description:"字典类型"`
-	ListClass string      `json:"listClass" description:"表格回显样式"`
-	Extra     interface{} `json:"extra"     description:"额外数据配置"`
-}

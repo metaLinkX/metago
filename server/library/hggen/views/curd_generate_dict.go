@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"hash/fnv"
 	"strings"
 
 	"server/internal/dao"
@@ -18,9 +19,28 @@ import (
 
 // DictItem 字典项
 type DictItem struct {
-	Value int64
-	Label string
-	Name  string
+	Value     int64
+	Label     string
+	Name      string
+	ValueType string
+	Type      string
+	ListClass string
+	Extra     interface{}
+}
+
+// genHashListClass 根据label以hash算法生成表格回显样式
+func genHashListClass(label string) string {
+	strings := []string{"default", "primary", "info", "success", "warning", "error"}
+	hash := fnv.New32()
+
+	tag := "default"
+	if _, err := hash.Write(gconv.Bytes(label)); err == nil {
+		index := int(hash.Sum32()) % len(strings)
+		if index < len(strings) {
+			tag = strings[index]
+		}
+	}
+	return tag
 }
 
 // GenerateDictConstFile 生成字典常量文件
@@ -48,9 +68,13 @@ func (l *gCurd) GenerateDictConstFile(ctx context.Context, dictType string) (con
 			value := gconv.Int64(item.Value)
 			name := convertLabelToConstName(item.Label)
 			dictItems = append(dictItems, DictItem{
-				Value: value,
-				Label: item.Label,
-				Name:  name,
+				Value:     value,
+				Label:     item.Label,
+				Name:      name,
+				ValueType: item.ValueType,
+				Type:      item.Type,
+				ListClass: "", // 将在生成时计算
+				Extra:     nil,
 			})
 		}
 	}
@@ -124,7 +148,11 @@ func (l *gCurd) generateDictConstContent(dictType string, items []DictItem) (con
 
 	// 文件头部
 	buffer.WriteString(fmt.Sprintf("package consts\n\n"))
-	buffer.WriteString(fmt.Sprintf("import \"server/internal/model\"\n\n"))
+	buffer.WriteString(fmt.Sprintf("import (\n"))
+	buffer.WriteString(fmt.Sprintf("\t\"hash/fnv\"\n"))
+	buffer.WriteString(fmt.Sprintf("\t\"server/internal/model\"\n"))
+	buffer.WriteString(fmt.Sprintf("\t\"github.com/gogf/gf/v2/util/gconv\"\n"))
+	buffer.WriteString(fmt.Sprintf(")\n\n"))
 
 	// 生成常量定义
 	buffer.WriteString(fmt.Sprintf("const (\n"))
@@ -154,29 +182,27 @@ func (l *gCurd) generateDictConstContent(dictType string, items []DictItem) (con
 	buffer.WriteString(fmt.Sprintf("\t}\n"))
 
 	// Option变量
-	buffer.WriteString(fmt.Sprintf("\tDict%sOption = []model.MdOption{\n", dictTypeName))
+	buffer.WriteString(fmt.Sprintf("\tDict%sOption = []model.Option{\n", dictTypeName))
 	for i, item := range items {
 		constName := fmt.Sprintf("Dict%s%s", dictTypeName, item.Name)
 		if item.Name == "DictItem" {
 			constName = fmt.Sprintf("Dict%s%s%d", dictTypeName, item.Name, i+1)
 		}
-		buffer.WriteString(fmt.Sprintf("\t\t{Label: \"%s\", Value: %s},\n", item.Label, constName))
+
+		// 使用hash算法生成ListClass
+		listClass := genHashListClass(item.Label)
+
+		buffer.WriteString(fmt.Sprintf("\t\t{\n"))
+		buffer.WriteString(fmt.Sprintf("\t\t\tKey:       %s,\n", constName))
+		buffer.WriteString(fmt.Sprintf("\t\t\tLabel:     \"%s\",\n", item.Label))
+		buffer.WriteString(fmt.Sprintf("\t\t\tValue:     %s,\n", constName))
+		buffer.WriteString(fmt.Sprintf("\t\t\tValueType: \"%s\",\n", item.ValueType))
+		buffer.WriteString(fmt.Sprintf("\t\t\tType:      \"%s\",\n", item.Type))
+		buffer.WriteString(fmt.Sprintf("\t\t\tListClass: \"%s\",\n", listClass))
+		buffer.WriteString(fmt.Sprintf("\t\t\tExtra:     nil,\n"))
+		buffer.WriteString(fmt.Sprintf("\t\t},\n"))
 	}
 	buffer.WriteString(fmt.Sprintf("\t}\n"))
-
-	// Slice变量
-	buffer.WriteString(fmt.Sprintf("\tDict%sSlice = []int{", dictTypeName))
-	for i, item := range items {
-		constName := fmt.Sprintf("Dict%s%s", dictTypeName, item.Name)
-		if item.Name == "DictItem" {
-			constName = fmt.Sprintf("Dict%s%s%d", dictTypeName, item.Name, i+1)
-		}
-		if i > 0 {
-			buffer.WriteString(", ")
-		}
-		buffer.WriteString(constName)
-	}
-	buffer.WriteString(fmt.Sprintf("}\n"))
 
 	buffer.WriteString(fmt.Sprintf(")\n"))
 

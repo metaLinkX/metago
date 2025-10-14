@@ -14,7 +14,7 @@ var (
 		DictMenuTypeMenu: "菜单",
 		DictMenuTypeBtn:  "按钮",
 	}
-	DictMenuTypeOption = []model.MdOption{
+	DictMenuTypeOption = []model.Option{
 		{Label: "目录", Value: DictMenuTypeDir},
 		{Label: "菜单", Value: DictMenuTypeMenu},
 		{Label: "按钮", Value: DictMenuTypeBtn},

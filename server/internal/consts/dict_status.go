@@ -12,7 +12,7 @@ var (
 		DictStatusDisable: "禁用",
 		DictStatusEnabled: "启用",
 	}
-	DictStatusOption = []model.MdOption{
+	DictStatusOption = []model.Option{
 		{Label: "禁用", Value: DictStatusDisable},
 		{Label: "启用", Value: DictStatusEnabled},
 	}

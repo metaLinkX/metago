@@ -96,6 +96,20 @@ type (
 		// Build 提交生成
 		Build(ctx context.Context, in *sysin.GenCodesBuildInp) (err error)
 	}
+	ISysHgUser interface {
+		// Model 租户ORM模型
+		Model(ctx context.Context, option ...*handler.Option) *gdb.Model
+		// List 获取租户列表
+		List(ctx context.Context, in *sysin.HgUserListInp) (list []*sysin.HgUserListModel, totalCount int, err error)
+		// Export 导出租户
+		Export(ctx context.Context, in *sysin.HgUserListInp) (err error)
+		// Edit 修改/新增租户
+		Edit(ctx context.Context, in *sysin.HgUserEditInp) (err error)
+		// Delete 删除租户
+		Delete(ctx context.Context, in *sysin.HgUserDeleteInp) (err error)
+		// View 获取租户指定信息
+		View(ctx context.Context, in *sysin.HgUserViewInp) (res *sysin.HgUserViewModel, err error)
+	}
 	ISysLogger interface {
 		// PushAdminLoginLog 推送adminLog
 		PushAdminLoginLog(ctx context.Context)
@@ -108,6 +122,7 @@ var (
 	localSysConfig         ISysConfig
 	localSysDictType       ISysDictType
 	localSysGenCodes       ISysGenCodes
+	localSysHgUser         ISysHgUser
 	localSysLogger         ISysLogger
 )
 
@@ -153,6 +168,17 @@ func SysGenCodes() ISysGenCodes {
 
 func RegisterSysGenCodes(i ISysGenCodes) {
 	localSysGenCodes = i
+}
+
+func SysHgUser() ISysHgUser {
+	if localSysHgUser == nil {
+		panic("implement not found for interface ISysHgUser, forgot register?")
+	}
+	return localSysHgUser
+}
+
+func RegisterSysHgUser(i ISysHgUser) {
+	localSysHgUser = i
 }
 
 func SysLogger() ISysLogger {

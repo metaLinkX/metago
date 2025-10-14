@@ -12,7 +12,7 @@ var (
 		DictYes: "是",
 		DictNot: "否",
 	}
-	DictOption = []model.MdOption{
+	DictOption = []model.Option{
 		{Label: "是", Value: DictYes},
 		{Label: "否", Value: DictNot},
 	}

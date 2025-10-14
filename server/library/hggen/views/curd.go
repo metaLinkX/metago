@@ -354,6 +354,7 @@ func (l *gCurd) loadView(ctx context.Context, in *CurdPreviewInput) (err error) 
 		"LcFirst":   gstr.LcFirst,    // 首字母小写
 		"UcFirst":   gstr.UcFirst,    // 首字母大写
 		"ToTSArray": ToTSArray,       // 转为ts数组格式
+		"ToCamel":   gstr.CaseCamel,  // 转为驼峰命名
 	})
 
 	if err = l.generateWebModelDictOptions(ctx, in); err != nil {

@@ -34,8 +34,13 @@ func (c *cHgUser) List(ctx context.Context, req *hguser.ListReq) (res *hguser.Li
 	res = new(hguser.ListRes)
 	res.List = list
 	res.PageRes.Pack(req, totalCount)
-	res.DictSysNormalDisableOption = consts.DictSysNormalDisableOption
-	res.DictSysLoginStatusOption = consts.DictSysLoginStatusOption
+
+	// 添加字典依赖
+
+	res.SysNormalDisableOption = consts.DictSysNormalDisableOption
+
+	res.SysLoginStatusOption = consts.DictSysLoginStatusOption
+
 	return
 }
 

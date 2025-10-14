@@ -10,6 +10,7 @@ package @{.templateGroup}
 import (
 	"context"
 	"@{.importApi}"
+	"server/internal/consts"
 	"server/internal/model/input/form"
 	"@{.importInput}"
 	"@{.importService}"
@@ -36,6 +37,12 @@ func (c *c@{.varName}) List(ctx context.Context, req *@{.varName | ToLower}.List
 	res = new(@{.varName | ToLower}.ListRes)
 	res.List = list
 	res.PageRes.Pack(req, totalCount)
+	
+	// 添加字典依赖
+	@{ range $index, $dictType := .options.DictOps.Types }
+	res.@{ $dictType | ToCamel }Option = consts.Dict@{ $dictType | ToCamel }Option
+	@{ end }
+	
 	return
 }
 @{ if eq .options.Step.HasExport true }

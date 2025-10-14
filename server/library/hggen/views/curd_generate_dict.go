@@ -149,9 +149,7 @@ func (l *gCurd) generateDictConstContent(dictType string, items []DictItem) (con
 	// 文件头部
 	buffer.WriteString(fmt.Sprintf("package consts\n\n"))
 	buffer.WriteString(fmt.Sprintf("import (\n"))
-	buffer.WriteString(fmt.Sprintf("\t\"hash/fnv\"\n"))
 	buffer.WriteString(fmt.Sprintf("\t\"server/internal/model\"\n"))
-	buffer.WriteString(fmt.Sprintf("\t\"github.com/gogf/gf/v2/util/gconv\"\n"))
 	buffer.WriteString(fmt.Sprintf(")\n\n"))
 
 	// 生成常量定义

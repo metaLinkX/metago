@@ -7,11 +7,12 @@
 package hguser
 
 import (
-	"server/internal/model"
-	"server/internal/model/input/form"
 	"server/internal/model/input/sysin"
 
 	"github.com/gogf/gf/v2/frame/g"
+
+	"server/internal/model"
+	"server/internal/model/input/form"
 )
 
 // ListReq 查询租户列表
@@ -22,9 +23,12 @@ type ListReq struct {
 
 type ListRes struct {
 	form.PageRes
-	List                       []*sysin.HgUserListModel `json:"list"   dc:"数据列表"`
-	DictSysLoginStatusOption   []model.Option           `json:"dictSysLoginStatusOption"`
-	DictSysNormalDisableOption []model.Option           `json:"dictSysNormalDisableOption"`
+	List []*sysin.HgUserListModel `json:"list"   dc:"数据列表"`
+	// 添加字典依赖
+
+	SysNormalDisableOption []model.Option `json:"sysNormalDisableOption" dc:"字典选项"`
+
+	SysLoginStatusOption []model.Option `json:"sysLoginStatusOption" dc:"字典选项"`
 }
 
 // ExportReq 导出租户列表

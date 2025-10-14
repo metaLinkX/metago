@@ -8,10 +8,9 @@ package cmd
 
 import (
 	"context"
+	"server/library/hggen/internal/service"
 
 	"github.com/gogf/gf/v2/frame/g"
-
-	"server/library/hggen/internal/service"
 )
 
 var (

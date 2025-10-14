@@ -6,7 +6,9 @@
 
 package cmd
 
-import "server/library/hggen/internal/cmd/genpbentity"
+import (
+	"server/library/hggen/internal/cmd/genpbentity"
+)
 
 type (
 	cGenPbEntity = genpbentity.CGenPbEntity

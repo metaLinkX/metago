@@ -9,6 +9,9 @@ package genctrl
 import (
 	"fmt"
 	"path/filepath"
+	"server/library/hggen/internal/consts"
+	"server/library/hggen/internal/utility/mlog"
+	"server/library/hggen/internal/utility/utils"
 
 	"github.com/gogf/gf/v2/container/gmap"
 	"github.com/gogf/gf/v2/container/gset"
@@ -16,10 +19,6 @@ import (
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
-
-	"server/library/hggen/internal/consts"
-	"server/library/hggen/internal/utility/mlog"
-	"server/library/hggen/internal/utility/utils"
 )
 
 type apiInterfaceGenerator struct{}

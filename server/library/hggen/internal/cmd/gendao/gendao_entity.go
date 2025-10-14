@@ -9,15 +9,14 @@ package gendao
 import (
 	"context"
 	"path/filepath"
+	"server/library/hggen/internal/consts"
+	"server/library/hggen/internal/utility/mlog"
+	"server/library/hggen/internal/utility/utils"
 	"strings"
 
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/os/gview"
 	"github.com/gogf/gf/v2/text/gstr"
-
-	"server/library/hggen/internal/consts"
-	"server/library/hggen/internal/utility/mlog"
-	"server/library/hggen/internal/utility/utils"
 )
 
 func generateEntity(ctx context.Context, in CGenDaoInternalInput) {

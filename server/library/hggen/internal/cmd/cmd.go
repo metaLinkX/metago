@@ -9,15 +9,14 @@ package cmd
 
 import (
 	"context"
+	"server/library/hggen/internal/service"
+	"server/library/hggen/internal/utility/mlog"
 	"strings"
 
 	"github.com/gogf/gf/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
 	"github.com/gogf/gf/v2/util/gtag"
-
-	"server/library/hggen/internal/service"
-	"server/library/hggen/internal/utility/mlog"
 )
 
 // GF is the management object for `gf` command line tool.

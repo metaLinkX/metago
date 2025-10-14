@@ -11,6 +11,6 @@ import (
 // AdminRoleMenu is the golang structure of table admin_role_menu for DAO operations like Where/Data.
 type AdminRoleMenu struct {
 	g.Meta `orm:"table:admin_role_menu, do:true"`
-	RoleId any // 角色ID
-	MenuId any // 菜单ID
+	RoleId interface{} // 角色ID
+	MenuId interface{} // 菜单ID
 }

@@ -9,13 +9,12 @@ package genservice
 import (
 	"bytes"
 	"fmt"
+	"server/library/hggen/internal/consts"
 
 	"github.com/gogf/gf/v2/container/gmap"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
-
-	"server/library/hggen/internal/consts"
 )
 
 func (c CGenService) generatePackageImports(generatedContent *bytes.Buffer, packageName string, imports []string) {

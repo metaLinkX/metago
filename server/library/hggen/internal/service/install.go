@@ -9,6 +9,8 @@ package service
 import (
 	"context"
 	"runtime"
+	"server/library/hggen/internal/utility/allyes"
+	"server/library/hggen/internal/utility/mlog"
 	"strings"
 
 	"github.com/gogf/gf/v2/container/garray"
@@ -19,9 +21,6 @@ import (
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
-
-	"server/library/hggen/internal/utility/allyes"
-	"server/library/hggen/internal/utility/mlog"
 )
 
 var (

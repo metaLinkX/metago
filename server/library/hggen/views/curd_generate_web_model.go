@@ -7,14 +7,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/util/gconv"
 	"server/internal/dao"
 	"server/internal/model/input/sysin"
 	"server/library/convert"
 	"server/library/dict"
-
-	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/util/gconv"
 )
 
 type StateItem struct {

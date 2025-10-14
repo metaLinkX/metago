@@ -6,7 +6,9 @@
 
 package cmd
 
-import "server/library/hggen/internal/cmd/genpb"
+import (
+	"server/library/hggen/internal/cmd/genpb"
+)
 
 type (
 	cGenPb = genpb.CGenPb

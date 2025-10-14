@@ -9,6 +9,8 @@ package utils
 import (
 	"context"
 	"fmt"
+	"server/library/hggen/internal/consts"
+	"server/library/hggen/internal/utility/mlog"
 
 	"golang.org/x/tools/imports"
 
@@ -16,8 +18,6 @@ import (
 	"github.com/gogf/gf/v2/os/gproc"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
-	"server/library/hggen/internal/consts"
-	"server/library/hggen/internal/utility/mlog"
 )
 
 // GoFmt formats the source file and adds or removes import statements as necessary.

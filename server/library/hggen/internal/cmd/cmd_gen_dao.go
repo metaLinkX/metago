@@ -10,14 +10,10 @@ import (
 	//_ "github.com/gogf/gf/contrib/drivers/clickhouse/v2"
 	//_ "github.com/gogf/gf/contrib/drivers/mssql/v2"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
+	"server/library/hggen/internal/cmd/gendao"
 	//_ "github.com/gogf/gf/contrib/drivers/oracle/v2"
 	//_ "github.com/gogf/gf/contrib/drivers/pgsql/v2"
 	//_ "github.com/gogf/gf/contrib/drivers/sqlite/v2"
-
-	// do not add dm in cli pre-compilation,
-	// the dm driver does not support certain target platforms.
-	// _ "github.com/gogf/gf/contrib/drivers/dm/v2"
-	"server/library/hggen/internal/cmd/gendao"
 )
 
 type (

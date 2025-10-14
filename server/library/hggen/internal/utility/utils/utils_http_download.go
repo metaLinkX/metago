@@ -10,13 +10,12 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"server/library/hggen/internal/utility/mlog"
 	"time"
 
 	"github.com/schollz/progressbar/v3"
 
 	"github.com/gogf/gf/v2/errors/gerror"
-
-	"server/library/hggen/internal/utility/mlog"
 )
 
 // HTTPDownloadFileWithPercent downloads target url file to local path with percent process printing.

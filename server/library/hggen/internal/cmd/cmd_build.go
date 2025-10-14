@@ -13,6 +13,7 @@ import (
 	"os"
 	"regexp"
 	"runtime"
+	"server/library/hggen/internal/utility/mlog"
 	"strings"
 
 	"github.com/gogf/gf/v2/encoding/gbase64"
@@ -26,8 +27,6 @@ import (
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gtag"
-
-	"server/library/hggen/internal/utility/mlog"
 )
 
 var (

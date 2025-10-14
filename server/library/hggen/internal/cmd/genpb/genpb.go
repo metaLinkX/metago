@@ -8,13 +8,12 @@ package genpb
 
 import (
 	"context"
+	"server/library/hggen/internal/utility/mlog"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/os/gproc"
 	"github.com/gogf/gf/v2/util/gtag"
-
-	"server/library/hggen/internal/utility/mlog"
 )
 
 type (

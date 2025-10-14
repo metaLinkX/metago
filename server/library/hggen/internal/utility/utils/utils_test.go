@@ -8,11 +8,10 @@ package utils_test
 
 import (
 	"fmt"
+	"server/library/hggen/internal/utility/utils"
 	"testing"
 
 	"github.com/gogf/gf/v2/test/gtest"
-
-	"server/library/hggen/internal/utility/utils"
 )
 
 func Test_GetModPath(t *testing.T) {

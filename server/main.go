@@ -1,11 +1,10 @@
 package main
 
 import (
+	_ "server/internal/logic"
 	_ "server/internal/packed"
 	"server/library/hggen"
 	"server/library/system"
-
-	_ "server/internal/logic"
 
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"

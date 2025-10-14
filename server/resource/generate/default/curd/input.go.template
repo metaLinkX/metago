@@ -17,8 +17,8 @@ import (
 	"server/internal/consts"
 	"server/internal/model/entity"
 	"server/internal/model/input/form"
-	"hotgo/utility/validate"
-	@{ if eq .options.Step.HasHookMemberSummary true }"server/internal/library/hgorm/hook"@{end}
+	"server/library/validate"
+	@{ if eq .options.Step.HasHookMemberSummary true }"server/library/hgorm/hook"@{end}
 	@{ if eq .options.Step.IsTreeTable true }"hotgo/utility/tree"@{end}
 )
 @{ if eq .options.Step.HasEdit true }

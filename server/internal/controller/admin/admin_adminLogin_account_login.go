@@ -3,6 +3,7 @@ package admin
 import (
 	"context"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"server/api/admin/adminLogin"
 	"server/internal/consts"
 	"server/internal/dao"
 	"server/internal/model/entity"
@@ -10,8 +11,6 @@ import (
 	"server/library/captcha"
 	"server/library/encrypt"
 	"server/library/jwt"
-
-	"server/api/admin/adminLogin"
 )
 
 func (c *ControllerAdminLogin) AccountLogin(ctx context.Context, req *adminLogin.AccountLoginReq) (res *adminLogin.AccountLoginRes, err error) {

@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"server/library/hggen/internal/utility/mlog"
 	"strings"
 
 	"github.com/gogf/gf/v2/container/gtype"
@@ -22,8 +23,6 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/os/gtimer"
 	"github.com/gogf/gf/v2/util/gtag"
-
-	"server/library/hggen/internal/utility/mlog"
 )
 
 var (

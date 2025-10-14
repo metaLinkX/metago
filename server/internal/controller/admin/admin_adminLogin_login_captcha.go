@@ -2,10 +2,9 @@ package admin
 
 import (
 	"context"
+	"server/api/admin/adminLogin"
 	"server/internal/service"
 	"server/library/captcha"
-
-	"server/api/admin/adminLogin"
 )
 
 func (c *ControllerAdminLogin) LoginCaptcha(ctx context.Context, req *adminLogin.LoginCaptchaReq) (res *adminLogin.LoginCaptchaRes, err error) {

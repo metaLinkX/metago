@@ -10,6 +10,9 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"server/library/hggen/internal/utility/allyes"
+	"server/library/hggen/internal/utility/mlog"
+	"server/library/hggen/internal/utility/utils"
 	"strings"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -19,10 +22,6 @@ import (
 	"github.com/gogf/gf/v2/os/gres"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gtag"
-
-	"server/library/hggen/internal/utility/allyes"
-	"server/library/hggen/internal/utility/mlog"
-	"server/library/hggen/internal/utility/utils"
 )
 
 var (

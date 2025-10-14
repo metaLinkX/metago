@@ -8,6 +8,7 @@ package cmd
 
 import (
 	"context"
+	"server/library/hggen/internal/utility/mlog"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
@@ -15,8 +16,6 @@ import (
 	"github.com/gogf/gf/v2/os/gproc"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
-
-	"server/library/hggen/internal/utility/mlog"
 )
 
 var (

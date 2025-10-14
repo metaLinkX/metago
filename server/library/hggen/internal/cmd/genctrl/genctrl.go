@@ -8,6 +8,7 @@ package genctrl
 
 import (
 	"context"
+	"server/library/hggen/internal/utility/mlog"
 
 	"github.com/gogf/gf/v2/container/gset"
 	"github.com/gogf/gf/v2/frame/g"
@@ -15,7 +16,6 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/gogf/gf/v2/util/gtag"
-	"server/library/hggen/internal/utility/mlog"
 )
 
 const (

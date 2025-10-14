@@ -9,15 +9,14 @@ package genctrl
 import (
 	"fmt"
 	"path/filepath"
+	"server/library/hggen/internal/consts"
+	"server/library/hggen/internal/utility/mlog"
 	"strings"
 
 	"github.com/gogf/gf/v2/container/gset"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/text/gstr"
-
-	"server/library/hggen/internal/consts"
-	"server/library/hggen/internal/utility/mlog"
 )
 
 type controllerGenerator struct{}

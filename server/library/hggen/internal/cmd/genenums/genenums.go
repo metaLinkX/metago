@@ -8,6 +8,8 @@ package genenums
 
 import (
 	"context"
+	"server/library/hggen/internal/consts"
+	"server/library/hggen/internal/utility/mlog"
 
 	"golang.org/x/tools/go/packages"
 
@@ -15,9 +17,6 @@ import (
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gtag"
-
-	"server/library/hggen/internal/consts"
-	"server/library/hggen/internal/utility/mlog"
 )
 
 type (

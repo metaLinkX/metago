@@ -14,13 +14,12 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"server/library/hggen/internal/utility/mlog"
 	"time"
 
 	"github.com/gogf/gf/v2/encoding/gcompress"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
-
-	"server/library/hggen/internal/utility/mlog"
 )
 
 const (

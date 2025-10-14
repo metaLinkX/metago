@@ -8,6 +8,7 @@ package genservice
 
 import (
 	"fmt"
+	"server/library/hggen/internal/utility/mlog"
 	"strings"
 
 	"github.com/gogf/gf/v2/container/garray"
@@ -15,8 +16,6 @@ import (
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
-
-	"server/library/hggen/internal/utility/mlog"
 )
 
 func (c CGenService) calculateImportedItems(

@@ -18,19 +18,19 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 	"server/internal/dao"
 	"server/internal/consts"
-	"server/internal/library/contexts"
-	"server/internal/library/hgorm"
-	"server/internal/library/hgorm/handler"
-	"server/internal/library/hgorm/hook"
+	"server/library/contexts"
+	"server/library/hgorm"
+	"server/library/hgorm/handler"
+	"server/library/hgorm/hook"
 	"@{.importInput}"
 	"server/internal/model/input/form"
 	"@{.importService}"
-	"hotgo/utility/convert"
-	"hotgo/utility/excel"
-	"hotgo/utility/validate"
+	"server/library/convert"
+	"server/library/excel"
+	"server/library/validate"
 	@{ if eq .options.Step.IsAddon true }isc "server/internal/service"@{end}
 	@{ if eq .options.Step.IsTreeTable true }"hotgo/utility/tree"@{end}
-	@{ if eq .options.Step.HasFuncDict true }"server/internal/library/dict"@{end}
+	@{ if eq .options.Step.HasFuncDict true }"server/library/dict"@{end}
 	@{ if and (eq .options.Step.HasFuncDict true) (eq .options.Step.IsAddon false) }"server/internal/model"@{end}
 	@{ if and (eq .options.Step.HasFuncDict true) (eq .options.Step.IsAddon true) }imodel "server/internal/model"@{end}
 )
@@ -47,7 +47,7 @@ func init() {
 
 // Model @{.tableComment}ORM模型
 func (s *s@{.servFunName}) Model(ctx context.Context, option ...*handler.Option) *gdb.Model {
-	return handler.Model(dao.@{.daoName}.Ctx(ctx), option...)
+	return handler.AdminModel(dao.@{.daoName}.Ctx(ctx), option...)
 }
 
 // List 获取@{.tableComment}列表

@@ -9,6 +9,8 @@ package gendao
 import (
 	"context"
 	"fmt"
+	"server/library/hggen/internal/utility/mlog"
+	"server/library/hggen/internal/utility/utils"
 	"strings"
 
 	"golang.org/x/mod/modfile"
@@ -23,9 +25,6 @@ import (
 	"github.com/gogf/gf/v2/os/gview"
 	"github.com/gogf/gf/v2/text/gregex"
 	"github.com/gogf/gf/v2/text/gstr"
-
-	"server/library/hggen/internal/utility/mlog"
-	"server/library/hggen/internal/utility/utils"
 )
 
 type (

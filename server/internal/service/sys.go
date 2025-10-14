@@ -10,9 +10,28 @@ import (
 	"server/internal/model"
 	"server/internal/model/entity"
 	"server/internal/model/input/sysin"
+	"server/library/hgorm/handler"
+
+	"github.com/gogf/gf/v2/database/gdb"
 )
 
 type (
+	ISysAdminMemberDab interface {
+		// Model 管理员_用户表ORM模型
+		Model(ctx context.Context, option ...*handler.Option) *gdb.Model
+		// List 获取管理员_用户表列表
+		List(ctx context.Context, in *sysin.AdminMemberDabListInp) (list []*sysin.AdminMemberDabListModel, totalCount int, err error)
+		// Export 导出管理员_用户表
+		Export(ctx context.Context, in *sysin.AdminMemberDabListInp) (err error)
+		// Edit 修改/新增管理员_用户表
+		Edit(ctx context.Context, in *sysin.AdminMemberDabEditInp) (err error)
+		// Delete 删除管理员_用户表
+		Delete(ctx context.Context, in *sysin.AdminMemberDabDeleteInp) (err error)
+		// View 获取管理员_用户表指定信息
+		View(ctx context.Context, in *sysin.AdminMemberDabViewInp) (res *sysin.AdminMemberDabViewModel, err error)
+		// Status 更新管理员_用户表状态
+		Status(ctx context.Context, in *sysin.AdminMemberDabStatusInp) (err error)
+	}
 	ISysConfig interface {
 		// GetLogin 获取登录配置
 		GetLogin(ctx context.Context) (conf *model.LoginConfig, err error)
@@ -85,11 +104,23 @@ type (
 )
 
 var (
-	localSysConfig   ISysConfig
-	localSysDictType ISysDictType
-	localSysGenCodes ISysGenCodes
-	localSysLogger   ISysLogger
+	localSysAdminMemberDab ISysAdminMemberDab
+	localSysConfig         ISysConfig
+	localSysDictType       ISysDictType
+	localSysGenCodes       ISysGenCodes
+	localSysLogger         ISysLogger
 )
+
+func SysAdminMemberDab() ISysAdminMemberDab {
+	if localSysAdminMemberDab == nil {
+		panic("implement not found for interface ISysAdminMemberDab, forgot register?")
+	}
+	return localSysAdminMemberDab
+}
+
+func RegisterSysAdminMemberDab(i ISysAdminMemberDab) {
+	localSysAdminMemberDab = i
+}
 
 func SysConfig() ISysConfig {
 	if localSysConfig == nil {

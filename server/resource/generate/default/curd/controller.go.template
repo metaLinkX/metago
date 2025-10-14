@@ -13,7 +13,7 @@ import (
 	"server/internal/model/input/form"
 	"@{.importInput}"
 	"@{.importService}"
-	"hotgo/utility/validate"
+	"server/library/validate"
 )
 
 var (

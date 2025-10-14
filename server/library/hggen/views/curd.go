@@ -663,6 +663,7 @@ func (l *gCurd) generateLogicContent(ctx context.Context, in *CurdPreviewInput) 
 	if err != nil {
 		return err
 	}
+	gutil.Dump(tplData)
 
 	genFile.Content, err = in.view.Parse(ctx, name+".template", tplData)
 	if err != nil {

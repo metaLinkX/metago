@@ -10,6 +10,7 @@ import (
 	"context"
 	"server/api/admin/hguser"
 	"server/internal/consts"
+	"server/internal/model"
 	"server/internal/model/input/sysin"
 	"server/internal/service"
 )
@@ -35,11 +36,11 @@ func (c *cHgUser) List(ctx context.Context, req *hguser.ListReq) (res *hguser.Li
 	res.List = list
 	res.PageRes.Pack(req, totalCount)
 
-	// 添加字典依赖
+	res.Dict = make(map[string][]model.Option)
 
-	res.SysNormalDisableOption = consts.DictSysNormalDisableOption
+	res.Dict["sys_normal_disable"] = consts.DictSysNormalDisableOption
 
-	res.SysLoginStatusOption = consts.DictSysLoginStatusOption
+	res.Dict["sys_login_status"] = consts.DictSysLoginStatusOption
 
 	return
 }
@@ -65,11 +66,12 @@ func (c *cHgUser) View(ctx context.Context, req *hguser.ViewReq) (res *hguser.Vi
 
 	res = new(hguser.ViewRes)
 	res.HgUserViewModel = data
-	// 添加字典依赖
 
-	res.SysNormalDisableOption = consts.DictSysNormalDisableOption
+	res.Dict = make(map[string][]model.Option)
 
-	res.SysLoginStatusOption = consts.DictSysLoginStatusOption
+	res.Dict["sys_normal_disable"] = consts.DictSysNormalDisableOption
+
+	res.Dict["sys_login_status"] = consts.DictSysLoginStatusOption
 
 	return
 }

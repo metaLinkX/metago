@@ -37,12 +37,13 @@ func (c *c@{.varName}) List(ctx context.Context, req *@{.varName | ToLower}.List
 	res = new(@{.varName | ToLower}.ListRes)
 	res.List = list
 	res.PageRes.Pack(req, totalCount)
-	
-	// 添加字典依赖
-	@{ range $index, $dictType := .options.DictOps.Types }
-	res.@{ $dictType | ToCamel }Option = consts.Dict@{ $dictType | ToCamel }Option
+
+	@{ if eq .options.DictOps.Has true }
+	res.Dict = make(map[string][]model.Option)
+    @{ range $index, $dictType := .options.DictOps.Types }
+    res.Dict["@{$dictType}"] = consts.Dict@{ $dictType | ToCamel }Option
+    @{ end }
 	@{ end }
-	
 	return
 }
 @{ if eq .options.Step.HasExport true }
@@ -82,9 +83,11 @@ func (c *c@{.varName}) View(ctx context.Context, req *@{.varName | ToLower}.View
 
 	res = new(@{.varName | ToLower}.ViewRes)
 	res.@{.varName}ViewModel = data
-	// 添加字典依赖
+	@{ if eq .options.DictOps.Has true }
+    res.Dict = make(map[string][]model.Option)
     @{ range $index, $dictType := .options.DictOps.Types }
-    res.@{ $dictType | ToCamel }Option = consts.Dict@{ $dictType | ToCamel }Option
+    res.Dict["@{$dictType}"] = consts.Dict@{ $dictType | ToCamel }Option
+    @{ end }
     @{ end }
 	return
 }

@@ -23,12 +23,8 @@ type ListReq struct {
 
 type ListRes struct {
 	form.PageRes
-	List []*sysin.HgUserListModel `json:"list"   dc:"数据列表"`
-	// 添加字典依赖
-
-	SysNormalDisableOption []model.Option `json:"sysNormalDisableOption" dc:"字典选项"`
-
-	SysLoginStatusOption []model.Option `json:"sysLoginStatusOption" dc:"字典选项"`
+	List []*sysin.HgUserListModel  `json:"list"   dc:"数据列表"`
+	Dict map[string][]model.Option `json:"dict" dc:"字典选项"`
 }
 
 // ExportReq 导出租户列表
@@ -47,11 +43,7 @@ type ViewReq struct {
 
 type ViewRes struct {
 	*sysin.HgUserViewModel
-	// 添加字典依赖
-
-	SysNormalDisableOption []model.Option `json:"sysNormalDisableOption" dc:"字典选项"`
-
-	SysLoginStatusOption []model.Option `json:"sysLoginStatusOption" dc:"字典选项"`
+	Dict map[string][]model.Option `json:"dict" dc:"字典选项"`
 }
 
 // EditReq 修改/新增租户

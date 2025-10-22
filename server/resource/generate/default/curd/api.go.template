@@ -12,7 +12,7 @@ import (
 	"@{.importInput}"
 
 	"server/internal/model/input/form"
-	"server/internal/model"
+	@{ if eq .options.DictOps.Has true }"server/internal/model"@{end}
 	@{ if eq .options.Step.IsTreeTable true }"hotgo/utility/tree"@{end}
 )
 
@@ -25,10 +25,7 @@ type ListReq struct {
 type ListRes struct {
 	form.PageRes
 	List []*@{.templateGroup}in.@{.varName}ListModel `json:"list"   dc:"数据列表"`
-	// 添加字典依赖
-	@{ range $index, $dictType := .options.DictOps.Types }
-	@{ $dictType | ToCamel }Option []model.Option `json:"@{ $dictType | ToCamel | LcFirst }Option" dc:"字典选项"`
-	@{ end }
+	@{ if eq .options.DictOps.Has true }Dict map[string][]model.Option `json:"dict" dc:"字典选项"`@{ end }
 }
 @{ if eq .options.Step.HasExport true }
 // ExportReq 导出@{.tableComment}列表
@@ -48,10 +45,7 @@ type ViewReq struct {
 
 type ViewRes struct {
 	*@{.templateGroup}in.@{.varName}ViewModel
-    // 添加字典依赖
-    @{ range $index, $dictType := .options.DictOps.Types }
-    @{ $dictType | ToCamel }Option []model.Option `json:"@{ $dictType | ToCamel | LcFirst }Option" dc:"字典选项"`
-    @{ end }
+    @{ if eq .options.DictOps.Has true }Dict map[string][]model.Option `json:"dict" dc:"字典选项"`@{ end }
 }
 @{end}
 @{ if eq .options.Step.HasEdit true }
